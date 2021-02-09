@@ -13,52 +13,22 @@
 
 <body>
 
-    <img src="github.com/Letiiciia/nodeChat/blob/master/img/1603907132946.jpg" alt="Trílogo" width=60 height=40>
- 
+    <img src="img/1603907132946.jpg" alt="Trílogo" width=80 height=65>
+    <h1>Trílogo</h1>
+
+
     <form id="chat">
-        <input type="text" name="username" placeholder="Digite seu usuário">
+        <input id="ticket_id" type="text" name="ticket_id" />
+        <input type="text" name="permalink" placeholder="[linkImg]">
         <input type="text" name="username" placeholder="Digite seu usuário">
         <div class="messages"></div>
-        <input type="text" name="message" placeholder="Digite sua mensagem">
+        <input type="text" name="message" placeholder="descrição do problema">
         <button type="submit">Enviar</button>
 
     </form>
 
-    <script type='text/javascript'>
-        var socket = io('http://localhost:3000');
+    <script src="script/function.js" type="text/javascript"></script>
 
-        function renderMessage(message) {
-            $('.messages').append('<div class="message"><strong>' + message.author + '</strong>:' + message.message + '</div>');
-        }
-
-        socket.on('previousMessages', function (messages) {
-            for (message of messages) {
-                renderMessage(messages);
-            }
-        })
-
-        socket.on('receivedMessage', function (message) {
-            renderMessage(message);
-        })
-
-        $('#chat').submit(function (event) {
-            event.preventDefault();
-
-            var author = $('input[name=username]').val();
-            var message = $('input[name=message]').val();
-
-            if (author.length && message.length) {
-                var messageObject = {
-                    author: author,
-                    message: message,
-                };
-
-                renderMessage(messageObject);
-
-                socket.emit('sendMessage', messageObject);
-            }
-        })
-    </script>
 
 </body>
 
