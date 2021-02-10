@@ -23,6 +23,7 @@ app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
 app.use('/api', router);
+
 app.use('/', (req, resp) => {
     resp.render('index.html');
 })
@@ -38,7 +39,7 @@ io.on('connection', socket => {
     socket.on('sendMessage', data => {
         messages.push(data);
         socket.broadcast.emit('receivedMessage', data);
-        console.log(messages);
+        
     });
 });
 

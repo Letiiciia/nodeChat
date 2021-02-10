@@ -1,17 +1,12 @@
-const ChatTrilogo = require('../model/Schema');
+const chatTrilogo = require('../model/schemaChat');
 
-const adc = (request, response) => {
-    console.log("URL: " + request.url);
+const creatRoom = (request, response) => {
+    console.log(request.url);
     const body = request.body;
 
-    const novo = new ChatTrilogo(body);
+    const newContent = new chatTrilogo(body);
 
-    console.log(novo);
-    //console.log("BODY: " + JSON.stringify(request.body));
-
-    // const newCalled = new ChatTrilogo(body);
-    // console.log(newCalled);
-    novo.save((error, data) => {
+    newContent.save((error, data) => {
         if (error) {
             return response.status(500).send({ message: "Error" });
         } else {
@@ -21,11 +16,27 @@ const adc = (request, response) => {
             });
         }
     })
+}
 
+const getMessages = (request, response) => {
+    console.log(request.url);
+    const id = request.params.id;
+
+    chatTrilogo.find({ticket_id:id},(error, data) => {
+        if (error) {
+            return response.status(500).send({ message: 'Error' });
+        } else {
+            return response.status(200).send({
+                message: `Chat: ${id}`,
+                data
+            });
+        }
+    })
 }
 
 
 module.exports = {
-    adc
+    creatRoom,
+    getMessages
 }
 
