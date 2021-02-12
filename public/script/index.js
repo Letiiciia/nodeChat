@@ -1,10 +1,12 @@
-var socket = io('http://localhost:3000');
+//const chatTrilogo = require('../../src/model/schemaChat');
+const socket = io('http://localhost:3000');
+
 
  document.getElementById("ticket_id").value = "ticket_id: 60232ace18f92c27146cd11a";
  console.log(document.getElementById("ticket_id").value);
 
 function renderMessage(message) {
-    $('.messages').append('<div class="message"><strong>' + message.author + '</strong>:' + message.message + '</div>');
+    $('.messages').append('<div class="message"><strong>' + message.username + '</strong>:' + message.message + '</div>');
 }
 
 socket.on('previousMessages', function (messages) {
@@ -20,19 +22,24 @@ socket.on('receivedMessage', function (message) {
 
 $('#chat').submit(function (event) {
     event.preventDefault();
-
-    var author = $('input[name=username]').val();
+    
     var message = $('input[name=message]').val();
+    var permalink = $('input[name=permalink]').val();
+    var username = $('input[name=username]').val();
 
-    if (author.length && message.length) {
+    if (permalink.length && message.length && username.length) {
+
         var messageObject = {
-            author: author,
+    
             message: message,
+            permalink: permalink,
+            username: username
+
         };
 
         renderMessage(messageObject);
 
         socket.emit('sendMessage', messageObject);
-        
     }
 })
+

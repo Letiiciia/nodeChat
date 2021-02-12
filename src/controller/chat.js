@@ -19,7 +19,7 @@ const creatRoom = (request, response) => {
     })
 }
 
-const getMessages = (request, response) => {
+const chatMessages = (request, response) => {
     console.log(request.url);
     const id = request.params.id;
 
@@ -38,6 +38,6 @@ const getMessages = (request, response) => {
 
 module.exports = {
     creatRoom,
-    getMessages
+    chatMessages
 }
 
