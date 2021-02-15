@@ -10,7 +10,7 @@ module.exports = () => {
             passwordField:'password',
             session: false
         }, (email, password, done) => {
-            //autenticar usuario
+            //user authenticate
             done(null, {})
         })
     );
