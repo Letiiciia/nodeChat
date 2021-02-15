@@ -6,12 +6,18 @@ const authorSchema = new Schema({
         type: String,
         required: true
     },
-    password: {
+    email: {
         type: String,
+        required: true
+    },
+    password: {
+        type: Number,
         required: true,
         select: false
     }
-}
+},
+
+{collection: "loginTrilogo"}
 
 )
 

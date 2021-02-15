@@ -1,9 +1,11 @@
+const { connection } = require("mongoose");
+
 //const chatTrilogo = require('../../src/model/schemaChat');
 const socket = io('http://localhost:3000');
 
-
- document.getElementById("ticket_id").value = "ticket_id: 60232ace18f92c27146cd11a";
- console.log(document.getElementById("ticket_id").value);
+// const id = connection.id
+//  document.getElementById("ticket_id").value = id;
+//  console.log(document.getElementById("ticket_id").value);
 
 function renderMessage(message) {
     $('.messages').append('<div class="message"><strong>' + message.username + '</strong>:' + message.message + '</div>');
@@ -27,7 +29,7 @@ $('#chat').submit(function (event) {
     var permalink = $('input[name=permalink]').val();
     var username = $('input[name=username]').val();
 
-    if (permalink.length && message.length && username.length) {
+    if (message.length && permalink.length && username.length) {
 
         var messageObject = {
     

@@ -25,7 +25,7 @@ const chatMessages = (request, response) => {
 
     chatTrilogo.find({ticket_id:id},(error, data) => {
         if (error) {
-            return response.status(500).send({ message: 'Error' });
+            return response.status(500).send({ message: "Error" });
         } else {
             return response.status(200).send({
                 message: `Chat: ${id}`,
