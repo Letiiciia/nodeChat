@@ -1,9 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const authorController = require('../controller/author');
-const auth = require('../model/auth');
+const passport = require('passport');
+
+router.get(
+    '/authors', 
+    passport.authenticate('bearer', {session: false}), 
+    authorController.getAuthors
+);
 
 router.post('/create', authorController.author_chat);
-router.get('/authors', authorController.getAuthors);
 
 module.exports = router;

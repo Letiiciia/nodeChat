@@ -1,7 +1,9 @@
 const jwt = require('jsonwebtoken');
 
 const createToken = () => {
-    payload = {};
+    payload = {
+        id: 'usuario.id'
+    };
     return jwt.sign(payload, 'senha-secreta');
     
 }
@@ -9,7 +11,7 @@ const createToken = () => {
 const login = (request, response) => {
     const token = createToken();
     response.set('Authorization', token);
-    response.status(200).send();
+    response.status(204).send();
 }
 
 module.exports = {

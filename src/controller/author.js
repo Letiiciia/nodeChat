@@ -1,6 +1,5 @@
 const loginTrilogo = require('../model/schemaAuthor');
 
-
 const author_chat = (request, response) => {
     console.log(request.url);
     const body = request.body;

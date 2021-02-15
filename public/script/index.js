@@ -1,10 +1,10 @@
 const { connection } = require("mongoose");
 
-//const chatTrilogo = require('../../src/model/schemaChat');
+
 const socket = io('http://localhost:3000');
 
-// const id = connection.id
-//  document.getElementById("ticket_id").value = id;
+
+//document.getElementById("ticket_id").value = "id";
 //  console.log(document.getElementById("ticket_id").value);
 
 function renderMessage(message) {
